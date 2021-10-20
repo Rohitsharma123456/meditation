@@ -15,8 +15,8 @@ use App\Http\Controllers\AlgoController;
 */
 
 
-Route::middleware(['auth'])->prefix('dapp')->group(function(){
-  Route::get('/products',[ProductController::class,'index'])->name('products');
+Route::middleware(['auth'])->group(function(){
+  Route::get('/',[ProductController::class,'index'])->name('products');
   Route::get('/addtocart',[ProductController::class,'addtocart'])->name('addtocart');
   Route::get('/cartpage',[ProductController::class,'getcart'])->name('cartpage');
   Route::post('/create-checkout-session',[ProductController::class,'createcheckoutsession'])->name('createcheckoutsession');
