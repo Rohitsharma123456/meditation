@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Cart;
+use Stripe\Product;
 use Stripe\Stripe;
 
 class ProductController extends Controller
@@ -79,7 +80,12 @@ class ProductController extends Controller
             'success_url' => 'https://example.com/success',
             'cancel_url' => 'https://example.com/cancel',
           ]);
-          return redirect($session->url)->with('status',303);;
+          return redirect($session->url)->with('status',303);
 
+    }
+    public function product(Request $request){
+     $product=Products::find($request->id);
+     $cartcount=$this->getcartcount();
+     return view('ecom.product',compact('product','cartcount'));
     }
 }

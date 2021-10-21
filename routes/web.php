@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AlgoController;
+use App\Http\Controllers\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +19,10 @@ use App\Http\Controllers\AlgoController;
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/',[ProductController::class,'index'])->name('products');
+    Route::get('/product/{id}',[ProductController::class,'product'])->name('product');
   Route::get('/addtocart',[ProductController::class,'addtocart'])->name('addtocart');
   Route::get('/cartpage',[ProductController::class,'getcart'])->name('cartpage');
-  Route::post('/create-checkout-session',[ProductController::class,'createcheckoutsession'])->name('createcheckoutsession');
+  Route::post('/create-checkout-session',[OrderController::class,'store'])->name('createcheckoutsession');
  
 });
 Route::prefix('algo')->group(function(){

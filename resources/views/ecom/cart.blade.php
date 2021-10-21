@@ -30,10 +30,10 @@
 <tr><td></td><td></td><td></td><td>Grand Total</td><td>${{$carttotal}}</td></tr>
 </tbody>
 </table>
-<form action="{{route('createcheckoutsession')}}" method="POST">
-    @csrf
-    <button type="submit" class="btn btn-primary">Checkout</button>
-  </form>
+
+    
+    <button type="button" class="btn btn-primary" onclick="placeorder({{$cart}})">Checkout</button>
+  
 
 <style>
     .productimage{
@@ -41,4 +41,17 @@
         width:360px,
     }
     </style>
+    <script>
+       function placeorder(products){
+         
+      $.ajax({
+     
+      method:'post',
+      url: "{{route('createcheckoutsession')}}",
+      data:{'products':products},
+      success: function(result){
+       alert('done');
+      }});
+  }
+    </script>
 @endsection
